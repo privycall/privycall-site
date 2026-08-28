@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#ff6b35" />
+  <meta name="description" content="Interface profissional de criação de conta." />
+  <title>Privycall — Criação de conta</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand" aria-label="Privycall">
+      <span class="brand-mark" aria-hidden="true"><i></i></span>
+      <span class="brand-name">privycall</span>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="card">
+      <div class="heading">
+        <h1>Criação de conta</h1>
+        <p>Preencha as informações abaixo para continuar.</p>
+      </div>
+
+      <form id="demoForm" novalidate>
+        <label>
+          <span>Nome completo</span>
+          <input id="fullName" type="text" placeholder="Digite seu nome completo" autocomplete="off" required />
+        </label>
+
+        <label>
+          <span>CPF</span>
+          <input id="cpf" type="text" inputmode="numeric" placeholder="000.000.000-00" maxlength="14" autocomplete="off" />
+        </label>
+
+        <label>
+          <span>E-mail</span>
+          <input id="email" type="email" placeholder="nome@exemplo.com" autocomplete="off" />
+        </label>
+
+        <label>
+          <span>Telefone</span>
+          <input id="phone" type="tel" inputmode="tel" placeholder="(00) 00000-0000" autocomplete="off" />
+        </label>
+
+        <button class="primary-btn" type="submit">Criar conta</button>
+      </form>
+    </section>
+
+    <p class="demo-note">Ambiente demonstrativo. Não utilize dados reais.</p>
+  </main>
+
+  <div class="loading-screen hidden" id="loadingScreen" role="status" aria-live="polite">
+    <div class="loader-ring"></div>
+    <h2>Finalizando o cadastro</h2>
+    <p>Aguarde alguns instantes.</p>
+    <div class="progress"><span></span></div>
+  </div>
+
+  <div class="prank-screen hidden" id="prankScreen" role="alertdialog" aria-modal="true" aria-labelledby="prankTitle">
+    <div class="warning-icon">!</div>
+    <p class="danger-kicker" id="dangerKicker">ALERTA DE SEGURANÇA</p>
+    <h2 id="prankTitle">SEU CELULAR FOI INVADIDO</h2>
+    <p class="danger-copy" id="dangerCopy">Acesso remoto detectado.<br>Verificando o dispositivo...</p>
+    <div class="fake-terminal" id="fakeTerminal" aria-hidden="true">
+      <span>&gt; dispositivo .... conectado</span>
+      <span>&gt; arquivos ....... verificando</span>
+      <span>&gt; localização .... ativa</span>
+    </div>
+    <p class="countdown" id="countdown">3</p>
+    <p class="simulation-disclaimer" id="simulationDisclaimer">Nenhum acesso real ao aparelho é realizado.</p>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
