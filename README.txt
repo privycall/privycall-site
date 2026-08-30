@@ -1,12 +1,14 @@
-Privycall — versão premium responsiva
+Privycall — versão premium responsiva v2
 
-Arquivos principais:
+Alterações:
+- visual mobile refinado
+- remoção do bloco "Já possui uma conta? Entrar"
+- gradiente preto para laranja no painel principal
+- alerta final com terminal mais elaborado
+- sem backend e sem armazenamento de dados
+
+Arquivos:
 - index.html
 - styles.css
 - app.js
 - assets/privycall-logo-dark.svg
-
-Observações:
-- Layout responsivo para desktop e celular.
-- Sem backend e sem envio de dados.
-- Para abrir localmente, use Live Server no VS Code.

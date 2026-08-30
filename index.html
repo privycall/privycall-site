@@ -21,7 +21,7 @@
       <div class="brand-copy">
         <span class="eyebrow">PRIVYCALL</span>
         <h1>Privacidade que <span>te conecta.</span></h1>
-        <p>Comunicação simples, moderna e protegida para o que realmente importa.</p>
+        <p>Uma experiência de acesso moderna, profissional e visualmente elegante para desktop e celular.</p>
       </div>
 
       <div class="feature-list">
@@ -31,17 +31,17 @@
           </div>
           <div>
             <h2>Proteção de ponta</h2>
-            <p>Uma experiência pensada para oferecer mais segurança e praticidade.</p>
+            <p>Estrutura visual planejada para transmitir confiança e segurança em cada etapa.</p>
           </div>
         </article>
 
         <article class="feature-item">
           <div class="feature-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5v-9z"></path><path d="M8 9.5a4 4 0 0 1 8 0v1H8v-1z" class="cut"></path><circle cx="12" cy="14" r="2.2" class="cut"></circle></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h7A2.5 2.5 0 0 1 16 8.5V10l4-2v8l-4-2v1.5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 4 15.5v-7z"></path><circle cx="10" cy="12" r="2.2" class="cut"></circle></svg>
           </div>
           <div>
             <h2>Conexões privadas</h2>
-            <p>Um ambiente moderno, rápido e com visual premium para seu acesso.</p>
+            <p>Chamadas e acessos com uma apresentação premium e foco em clareza visual.</p>
           </div>
         </article>
 
@@ -51,25 +51,28 @@
           </div>
           <div>
             <h2>Simples e rápido</h2>
-            <p>Crie sua conta em poucos passos e continue sem complicação.</p>
+            <p>Fluxo de cadastro objetivo, com poucos campos e leitura confortável.</p>
           </div>
         </article>
       </div>
 
-      <div class="orbit-glow" aria-hidden="true">
-        <div class="orbit orbit-1"></div>
-        <div class="orbit orbit-2"></div>
-        <div class="orbit orbit-3"></div>
-        <div class="orbit-core"></div>
+      <div class="hero-orb" aria-hidden="true">
+        <span class="ring ring-a"></span>
+        <span class="ring ring-b"></span>
+        <span class="ring ring-c"></span>
+        <span class="core"></span>
       </div>
     </aside>
 
     <main class="form-panel">
-      <div class="form-wrap">
-        <div class="login-pill">Já possui uma conta? <span>Entrar</span></div>
+      <div class="form-card">
+        <div class="mobile-brand">
+          <img src="assets/privycall-logo-dark.svg" alt="Privycall" class="mobile-brand-logo" />
+          <p class="mobile-brand-copy">Crie sua conta e continue com uma experiência rápida e profissional.</p>
+        </div>
 
         <div class="form-heading">
-          <span class="eyebrow form-eyebrow">NOVO CADASTRO</span>
+          <span class="eyebrow form-eyebrow">CADASTRO</span>
           <h2>Criação de conta</h2>
           <p>Preencha as informações abaixo para prosseguir com a criação da sua conta.</p>
         </div>
@@ -110,7 +113,7 @@
           <button class="primary-btn" type="submit">Criar conta</button>
         </form>
 
-        <p class="discreet-note">Seus dados são protegidos durante a transmissão.</p>
+        <p class="discreet-note">Conexão protegida via HTTPS</p>
       </div>
     </main>
   </div>
@@ -124,22 +127,46 @@
 
   <div class="alert-screen hidden" id="alertScreen" role="alertdialog" aria-modal="true" aria-labelledby="alertTitle">
     <div class="alert-card">
-      <div class="alert-visual">
-        <div class="alert-radar"></div>
-        <div class="lock-center">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V8a5 5 0 0 1 10 0v3"></path><rect x="5" y="11" width="14" height="10" rx="2"></rect></svg>
-        </div>
+      <div class="alert-topbar">
+        <span class="status-dot red"></span>
+        <span class="status-dot yellow"></span>
+        <span class="status-dot green"></span>
+        <p>security-monitor://device-core</p>
       </div>
-      <div class="alert-content">
-        <p class="alert-kicker" id="alertKicker">ALERTA DE SEGURANÇA</p>
-        <h2 id="alertTitle">SEU CELULAR FOI INVADIDO</h2>
-        <p class="alert-copy" id="alertCopy">Acesso não autorizado detectado.</p>
-        <div class="alert-terminal" id="alertTerminal">
-          <span>&gt; dispositivo: smartphone</span>
-          <span>&gt; status: verificando</span>
-          <span>&gt; localização: ativa</span>
+      <div class="alert-grid">
+        <div class="alert-visual">
+          <div class="alert-radar"></div>
+          <div class="lock-center">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V8a5 5 0 0 1 10 0v3"></path><rect x="5" y="11" width="14" height="10" rx="2"></rect></svg>
+          </div>
+          <div class="radar-ping ping-a"></div>
+          <div class="radar-ping ping-b"></div>
         </div>
-        <p class="countdown" id="countdown">3</p>
+
+        <div class="alert-content">
+          <p class="alert-kicker" id="alertKicker">ALERTA DE SEGURANÇA</p>
+          <h2 id="alertTitle">SEU CELULAR FOI INVADIDO</h2>
+          <p class="alert-copy" id="alertCopy">Atividade não autorizada detectada. Iniciando varredura do dispositivo.</p>
+
+          <div class="terminal-shell">
+            <div class="terminal-header">
+              <span>console</span>
+              <span class="terminal-badge">LIVE</span>
+            </div>
+            <div class="alert-terminal" id="alertTerminal"></div>
+          </div>
+
+          <div class="alert-footer">
+            <div class="footer-item">
+              <span class="footer-label">STATUS</span>
+              <strong id="statusText">PROCESSANDO</strong>
+            </div>
+            <div class="footer-item">
+              <span class="footer-label">TEMPO</span>
+              <strong class="countdown" id="countdown">3</strong>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
