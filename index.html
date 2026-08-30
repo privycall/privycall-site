@@ -82,7 +82,7 @@
             <span>Nome completo</span>
             <div class="input-shell">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4zM5 20a7 7 0 0 1 14 0"></path></svg>
-              <input id="fullName" type="text" placeholder="Digite seu nome completo" autocomplete="name" required />
+              <input id="fullName" type="text" placeholder="Digite seu nome completo" autocomplete="name" minlength="5" required />
             </div>
           </label>
 
@@ -90,7 +90,7 @@
             <span>CPF</span>
             <div class="input-shell">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"></path><path d="M14 3v5h5" class="line"></path><path d="M10 13h6M10 17h6" class="line"></path></svg>
-              <input id="cpf" type="text" inputmode="numeric" placeholder="000.000.000-00" maxlength="14" autocomplete="off" />
+              <input id="cpf" type="text" inputmode="numeric" placeholder="000.000.000-00" maxlength="14" autocomplete="off" required />
             </div>
           </label>
 
@@ -98,7 +98,7 @@
             <span>E-mail</span>
             <div class="input-shell">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"></path><path d="M4 8l8 6 8-6" class="line"></path></svg>
-              <input id="email" type="email" placeholder="nome@exemplo.com" autocomplete="email" />
+              <input id="email" type="email" placeholder="nome@exemplo.com" autocomplete="email" required />
             </div>
           </label>
 
@@ -106,11 +106,12 @@
             <span>Telefone</span>
             <div class="input-shell">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 14a13 13 0 0 1-5-5l2-2-1.6-3H6.8A1.8 1.8 0 0 0 5 5.8 13.2 13.2 0 0 0 18.2 19a1.8 1.8 0 0 0 1.8-1.8v-3.6L17 12z"></path></svg>
-              <input id="phone" type="tel" inputmode="tel" placeholder="(00) 00000-0000" autocomplete="tel" />
+              <input id="phone" type="tel" inputmode="tel" placeholder="(00) 00000-0000" autocomplete="tel" maxlength="15" required />
             </div>
           </label>
 
           <button class="primary-btn" type="submit">Criar conta</button>
+          <p class="form-error" id="formError" aria-live="polite"></p>
         </form>
 
         <p class="discreet-note">Conexão protegida via HTTPS</p>
