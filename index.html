@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#F47B35" />
-  <meta name="description" content="Privycall — criação de conta." />
-  <title>Privycall — Criação de conta</title>
+  <meta name="description" content="Privycall — conexão privada." />
+  <title>Privycall — Conexão privada</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -21,117 +21,76 @@
       <div class="brand-copy">
         <span class="eyebrow">PRIVYCALL</span>
         <h1>Privacidade que <span>te conecta.</span></h1>
-        <p>Uma experiência de acesso moderna, profissional e visualmente elegante para desktop e celular.</p>
+        <p>Uma experiência de conexão rápida, elegante e preparada para funcionar perfeitamente no computador e no celular.</p>
       </div>
 
       <div class="feature-list">
         <article class="feature-item">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l7 3v6c0 4.6-2.9 8.8-7 10-4.1-1.2-7-5.4-7-10V5l7-3z"></path><path d="M12 7a2 2 0 0 0-2 2v1.1A2 2 0 0 0 9 12v3h6v-3a2 2 0 0 0-1-1.9V9a2 2 0 0 0-2-2z" class="cut"></path></svg>
-          </div>
-          <div>
-            <h2>Proteção de ponta</h2>
-            <p>Estrutura visual planejada para transmitir confiança e segurança em cada etapa.</p>
-          </div>
+          <div class="feature-icon">◆</div>
+          <div><h2>Proteção de ponta</h2><p>Interface consistente e moderna em cada etapa da conexão.</p></div>
         </article>
-
         <article class="feature-item">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h7A2.5 2.5 0 0 1 16 8.5V10l4-2v8l-4-2v1.5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 4 15.5v-7z"></path><circle cx="10" cy="12" r="2.2" class="cut"></circle></svg>
+          <div class="feature-icon camera-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h7A2.5 2.5 0 0 1 16 8.5V10l4-2v8l-4-2v1.5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 4 15.5v-7z"></path><circle cx="10" cy="12" r="2.1"></circle></svg>
           </div>
-          <div>
-            <h2>Conexões privadas</h2>
-            <p>Chamadas e acessos com uma apresentação premium e foco em clareza visual.</p>
-          </div>
+          <div><h2>Conexões privadas</h2><p>Uma apresentação premium para uma experiência simples e confortável.</p></div>
         </article>
-
         <article class="feature-item">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L5 14h5l-1 8 8-12h-5l1-8z"></path></svg>
-          </div>
-          <div>
-            <h2>Simples e rápido</h2>
-            <p>Fluxo de cadastro objetivo, com poucos campos e leitura confortável.</p>
-          </div>
+          <div class="feature-icon">⚡</div>
+          <div><h2>Simples e rápido</h2><p>Informe seu nome e continue em poucos segundos.</p></div>
         </article>
       </div>
 
-      <div class="hero-orb" aria-hidden="true">
-        <span class="ring ring-a"></span>
-        <span class="ring ring-b"></span>
-        <span class="ring ring-c"></span>
-        <span class="core"></span>
-      </div>
+      <div class="hero-orb" aria-hidden="true"><span class="ring a"></span><span class="ring b"></span><span class="ring c"></span><span class="core"></span></div>
     </aside>
 
     <main class="form-panel">
-      <div class="form-card">
-        <div class="mobile-brand">
-          <img src="assets/privycall-logo-dark.svg" alt="Privycall" class="mobile-brand-logo" />
-          <p class="mobile-brand-copy">Crie sua conta e continue com uma experiência rápida e profissional.</p>
+      <section class="form-card">
+        <div class="mobile-brand"><img src="assets/privycall-logo-dark.svg" alt="Privycall" /></div>
+
+        <div class="connection-card">
+          <div class="avatar">LO</div>
+          <div class="connection-info">
+            <span class="status-line"><i></i> DISPONÍVEL AGORA</span>
+            <strong>Lana Oliveira</strong>
+            <p>Você será conectado a este perfil após continuar.</p>
+          </div>
         </div>
 
         <div class="form-heading">
-          <span class="eyebrow form-eyebrow">CADASTRO</span>
-          <h2>Criação de conta</h2>
-          <p>Preencha as informações abaixo para prosseguir com a criação da sua conta.</p>
+          <span class="eyebrow form-eyebrow">CONEXÃO</span>
+          <h2>Informe seu nome</h2>
+          <p>Digite seu nome para continuar e iniciar a conexão com Lana Oliveira.</p>
         </div>
 
-        <form id="demoForm" novalidate>
+        <form id="nameForm" novalidate>
           <label>
-            <span>Nome completo</span>
+            <span>Nome</span>
             <div class="input-shell">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4zM5 20a7 7 0 0 1 14 0"></path></svg>
-              <input id="fullName" type="text" placeholder="Digite seu nome completo" autocomplete="name" minlength="5" required />
+              <input id="displayName" type="text" maxlength="60" placeholder="Ex.: Pedro" autocomplete="name" required />
             </div>
           </label>
-
-          <label>
-            <span>CPF</span>
-            <div class="input-shell">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"></path><path d="M14 3v5h5" class="line"></path><path d="M10 13h6M10 17h6" class="line"></path></svg>
-              <input id="cpf" type="text" inputmode="numeric" placeholder="000.000.000-00" maxlength="14" autocomplete="off" required />
-            </div>
-          </label>
-
-          <label>
-            <span>E-mail</span>
-            <div class="input-shell">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"></path><path d="M4 8l8 6 8-6" class="line"></path></svg>
-              <input id="email" type="email" placeholder="nome@exemplo.com" autocomplete="email" required />
-            </div>
-          </label>
-
-          <label>
-            <span>Telefone</span>
-            <div class="input-shell">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 14a13 13 0 0 1-5-5l2-2-1.6-3H6.8A1.8 1.8 0 0 0 5 5.8 13.2 13.2 0 0 0 18.2 19a1.8 1.8 0 0 0 1.8-1.8v-3.6L17 12z"></path></svg>
-              <input id="phone" type="tel" inputmode="tel" placeholder="(00) 00000-0000" autocomplete="tel" maxlength="15" required />
-            </div>
-          </label>
-
-          <button class="primary-btn" type="submit">Criar conta</button>
+          <button class="primary-btn" type="submit">Conectar agora</button>
           <p class="form-error" id="formError" aria-live="polite"></p>
         </form>
 
-        <p class="discreet-note">Conexão protegida via HTTPS</p>
-      </div>
+        <p class="tracking-note">Ao continuar, o nome informado e o horário de acesso são registrados para controle desta experiência.</p>
+      </section>
     </main>
   </div>
 
   <div class="loading-screen hidden" id="loadingScreen" role="status" aria-live="polite">
     <div class="loader-ring"></div>
-    <h2>Finalizando o cadastro</h2>
-    <p>Aguarde alguns instantes.</p>
+    <h2>Conectando com Lana Oliveira</h2>
+    <p>Estabelecendo uma conexão segura...</p>
     <div class="progress"><span></span></div>
   </div>
 
   <div class="alert-screen hidden" id="alertScreen" role="alertdialog" aria-modal="true" aria-labelledby="alertTitle">
     <div class="alert-card">
       <div class="alert-topbar">
-        <span class="status-dot red"></span>
-        <span class="status-dot yellow"></span>
-        <span class="status-dot green"></span>
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
         <p>security-monitor://device-core</p>
       </div>
       <div class="alert-grid">
@@ -140,33 +99,22 @@
           <div class="lock-center">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V8a5 5 0 0 1 10 0v3"></path><rect x="5" y="11" width="14" height="10" rx="2"></rect></svg>
           </div>
-          <div class="radar-ping ping-a"></div>
-          <div class="radar-ping ping-b"></div>
+          <div class="radar-ping ping-a"></div><div class="radar-ping ping-b"></div>
         </div>
 
         <div class="alert-content">
           <p class="alert-kicker" id="alertKicker">ALERTA DE SEGURANÇA</p>
           <h2 id="alertTitle">SEU CELULAR FOI INVADIDO</h2>
           <p class="alert-copy" id="alertCopy">Atividade não autorizada detectada. Iniciando varredura do dispositivo.</p>
-
           <div class="terminal-shell">
-            <div class="terminal-header">
-              <span>console</span>
-              <span class="terminal-badge">LIVE</span>
-            </div>
+            <div class="terminal-header"><span>console</span><span class="terminal-badge">LIVE</span></div>
             <div class="alert-terminal" id="alertTerminal"></div>
           </div>
-
           <div class="alert-footer">
-            <div class="footer-item">
-              <span class="footer-label">STATUS</span>
-              <strong id="statusText">PROCESSANDO</strong>
-            </div>
-            <div class="footer-item">
-              <span class="footer-label">TEMPO</span>
-              <strong class="countdown" id="countdown">3</strong>
-            </div>
+            <div><span>STATUS</span><strong id="statusText">PROCESSANDO</strong></div>
+            <div><span>TEMPO</span><strong id="countdown">3</strong></div>
           </div>
+          <p class="screen-disclaimer">Efeito visual de demonstração. Nenhum acesso real ao dispositivo é realizado.</p>
         </div>
       </div>
     </div>
