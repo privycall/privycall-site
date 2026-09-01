@@ -8,10 +8,16 @@ export default async (req) => {
   try {
     const { action, sessionId, name='' } = await req.json();
     if (!sessionId || typeof sessionId !== 'string' || sessionId.length > 120) return json({error:'Sessão inválida'},400);
-    if (!['visit','submit','complete'].includes(action)) return json({error:'Ação inválida'},400);
+    if (!['visit','submit','complete','admin'].includes(action)) return json({error:'Ação inválida'},400);
     if (name && (typeof name !== 'string' || name.length > 60)) return json({error:'Nome inválido'},400);
 
     const key = `session/${sessionId.replace(/[^a-zA-Z0-9._-]/g,'')}`;
+
+    if (action === 'admin') {
+      await store.delete(key);
+      return json({ok:true});
+    }
+
     const now = new Date().toISOString();
     const current = await store.get(key,{type:'json',consistency:'strong'});
     const previous = current?.data || null;

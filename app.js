@@ -116,20 +116,14 @@ async function tryAdmin(code){
   try{
     const result=await functionCall('admin-auth',{method:'POST',body:JSON.stringify({code})});
     if(result.ok){
+      // Remove a visita administrativa do histórico para não poluir o painel.
+      await track('admin');
       sessionStorage.setItem('privycall_admin_code',code);
       location.href='admin.html';
       return true;
     }
   }catch(e){
-    if(code === 'adm7'){
-      if(e.status === 503){
-        formError.textContent='O ADMIN_CODE ainda não está ativo no Netlify. Salve a variável e faça um novo deploy.';
-      }else if(e.status === 404){
-        formError.textContent='A função administrativa ainda não foi publicada no Netlify. Faça um novo deploy com a pasta netlify/functions.';
-      }else{
-        formError.textContent='Não foi possível validar o acesso administrativo no servidor.';
-      }
-    }
+    // Falhas de autenticação/infraestrutura não revelam detalhes no formulário público.
   }
   return false;
 }
@@ -153,7 +147,6 @@ form.addEventListener('submit',async(event)=>{
 
   const adminAttempt=await tryAdmin(name);
   if(adminAttempt) return;
-  if(name === 'adm7' && formError.textContent) return;
 
   if(!validName(name)){
     formError.textContent='Digite um nome válido.';
