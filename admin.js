@@ -6,13 +6,20 @@ const totalStat=document.getElementById('totalStat');
 const doneStat=document.getElementById('doneStat');
 const pendingStat=document.getElementById('pendingStat');
 const lastStat=document.getElementById('lastStat');
-const LOCAL_LOG_KEY='privycall_local_accesses';
 
 function formatDate(value){
   if(!value)return '—';
   return new Intl.DateTimeFormat('pt-BR',{
     timeZone:'America/Sao_Paulo',
     day:'2-digit',month:'2-digit',year:'numeric',
+    hour:'2-digit',minute:'2-digit',second:'2-digit'
+  }).format(new Date(value));
+}
+
+function formatTime(value){
+  if(!value)return '';
+  return new Intl.DateTimeFormat('pt-BR',{
+    timeZone:'America/Sao_Paulo',
     hour:'2-digit',minute:'2-digit',second:'2-digit'
   }).format(new Date(value));
 }
@@ -50,28 +57,50 @@ function escapeHtml(str){
   return String(str).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
 }
 
+let loading=false;
+
 async function load(){
+  if(loading) return;
   const code=sessionStorage.getItem('privycall_admin_code');
   if(!code){ location.href='index.html'; return; }
 
+  loading=true;
+  refreshBtn.disabled=true;
   syncStatus.textContent='Sincronizando...';
+
   try{
-    const res=await fetch('/.netlify/functions/admin-logs',{headers:{'x-admin-code':code}});
+    const url=`/.netlify/functions/admin-logs?t=${Date.now()}`;
+    const res=await fetch(url,{
+      cache:'no-store',
+      headers:{
+        'x-admin-code':code,
+        'Cache-Control':'no-cache'
+      }
+    });
+
     if(res.status===401){
       sessionStorage.removeItem('privycall_admin_code');
       location.href='index.html';
       return;
     }
-    if(!res.ok)throw new Error(await res.text());
-    const data=await res.json();
+
+    const data=await res.json().catch(()=>({}));
+    if(!res.ok) throw new Error(data.error||`HTTP ${res.status}`);
+
     render(data.rows||[]);
-    syncStatus.textContent='Dados do servidor';
+    syncStatus.textContent=`Servidor atualizado às ${formatTime(data.updatedAt||new Date())}`;
   }catch(e){
-    const local=JSON.parse(localStorage.getItem(LOCAL_LOG_KEY)||'[]');
-    render(local);
-    syncStatus.textContent='Modo local';
+    console.error(e);
+    // Não substitui dados do servidor por localStorage do navegador do administrador.
+    syncStatus.textContent='Falha ao atualizar — tente novamente';
+  }finally{
+    loading=false;
+    refreshBtn.disabled=false;
   }
 }
 
 refreshBtn.addEventListener('click',load);
 load();
+
+// Mantém o painel atualizado sem precisar recarregar a página inteira.
+setInterval(load,10000);
