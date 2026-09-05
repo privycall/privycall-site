@@ -1,0 +1,14 @@
+PRIVYCALL - configuracao recuperada do RAR laranja
+
+Repositorio GitHub original:
+https://github.com/privycall/privycall-site.git
+
+Branch principal:
+main
+
+O arquivo ATUALIZAR_GITHUB.bat usa automaticamente essas informacoes.
+O netlify.toml original tambem foi mantido no projeto.
+
+Observacao importante:
+O RAR laranja nao continha uma pasta .netlify/state.json nem um Project/Site ID da Netlify.
+Por isso, o vinculo da conta/projeto Netlify nao pode ser recuperado do RAR.
