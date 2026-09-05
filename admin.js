@@ -25,9 +25,9 @@ function formatTime(value){
 }
 
 function statusFor(row){
-  if(row.completed) return {label:'Concluído', cls:'done'};
-  if(row.named || row.registered) return {label:'Em andamento', cls:'progress'};
-  return {label:'Não concluiu', cls:'pending'};
+  if(row.completed) return {label:'Aberto', cls:'done'};
+  if(row.named || row.registered) return {label:'Dados informados', cls:'progress'};
+  return {label:'Não abriu', cls:'pending'};
 }
 
 function render(rows){
@@ -40,6 +40,7 @@ function render(rows){
     const tr=document.createElement('tr');
     tr.innerHTML=`
       <td>${escapeHtml(row.name||'Não informado')}</td>
+      <td>${escapeHtml(row.email||'—')}</td>
       <td>${formatDate(row.firstAccess)}</td>
       <td>${formatDate(row.lastAccess)}</td>
       <td><span class="badge ${status.cls}">${status.label}</span></td>`;
@@ -91,7 +92,6 @@ async function load(){
     syncStatus.textContent=`Servidor atualizado às ${formatTime(data.updatedAt||new Date())}`;
   }catch(e){
     console.error(e);
-    // Não substitui dados do servidor por localStorage do navegador do administrador.
     syncStatus.textContent='Falha ao atualizar — tente novamente';
   }finally{
     loading=false;
@@ -101,6 +101,4 @@ async function load(){
 
 refreshBtn.addEventListener('click',load);
 load();
-
-// Mantém o painel atualizado sem precisar recarregar a página inteira.
 setInterval(load,10000);

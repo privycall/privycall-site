@@ -1,13 +1,16 @@
-Privycall Access Tracker v4 — correção de persistência
+PRIVYCALL
 
-Correções:
-- Corrigida leitura do Netlify Blobs: get(..., { type: 'json' }) retorna o objeto diretamente.
-- Painel agora lê os registros persistidos corretamente após atualizar a página.
-- Store usa consistência forte para leituras imediatas.
-- Atualização automática do painel a cada 10 segundos.
-- Cache desabilitado nas rotas de logs.
-- O painel não substitui dados do servidor por localStorage do navegador admin em caso de falha.
+Fluxo público:
+- A tela inicial solicita nome e e-mail.
+- O convite é apresentado como atendimento de Lana Oliveira.
+- Após a confirmação, o visitante recebe uma explicação simples de que o atendimento continuará no WhatsApp.
+- O botão abre diretamente o contato configurado da Lana no WhatsApp.
+- A imagem enviada para o perfil da Lana está em assets/lana-profile.webp.
 
-Netlify:
-- Mantenha ADMIN_CODE configurado como variável secreta.
-- Faça novo deploy após substituir os arquivos.
+Painel administrativo:
+- Digite adm7 no campo Nome da tela inicial para acessar o painel.
+- Para o acesso administrativo, o e-mail não é necessário.
+- O painel registra nome, e-mail, horários e abertura do botão do WhatsApp.
+
+Número de WhatsApp configurado:
+- +55 11 98778-5390

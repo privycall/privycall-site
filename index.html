@@ -3,120 +3,179 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#F47B35" />
-  <meta name="description" content="Privycall — conexão privada." />
-  <title>Privycall — Conexão privada</title>
+  <meta name="theme-color" content="#0a0b0d" />
+  <meta name="description" content="PrivyCall — convite de Lana Oliveira para continuar o atendimento pelo WhatsApp." />
+  <title>PrivyCall — Convite de Lana Oliveira</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/privycall-logo.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="page-shell">
+  <div class="page-shell" id="mainScreen">
     <aside class="brand-panel">
       <div class="brand-header">
-        <img src="assets/privycall-logo-dark.svg" alt="Privycall" class="brand-logo" />
+        <img src="assets/privycall-logo-dark.svg" alt="PrivyCall" class="brand-logo" />
+        <span class="secure-pill"><i></i> CONVITE INDIVIDUAL</span>
       </div>
 
       <div class="brand-copy">
-        <span class="eyebrow">PRIVYCALL</span>
-        <h1>Privacidade que <span>te conecta.</span></h1>
-        <p>Uma experiência de conexão rápida, elegante e preparada para funcionar perfeitamente no computador e no celular.</p>
+        <span class="eyebrow">CONVITE DE LANA OLIVEIRA</span>
+        <h1>Seu convite<br><span>da Lana chegou.</span></h1>
+        <p>Informe seu nome e e-mail para confirmar o convite. Depois, você será direcionado ao WhatsApp de Lana Oliveira para receber o acesso ao aplicativo e continuar o contato com ela.</p>
       </div>
 
-      <div class="feature-list">
-        <article class="feature-item">
-          <div class="feature-icon">◆</div>
-          <div><h2>Proteção de ponta</h2><p>Interface consistente e moderna em cada etapa da conexão.</p></div>
-        </article>
-        <article class="feature-item">
-          <div class="feature-icon camera-icon">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h7A2.5 2.5 0 0 1 16 8.5V10l4-2v8l-4-2v1.5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 4 15.5v-7z"></path><circle cx="10" cy="12" r="2.1"></circle></svg>
-          </div>
-          <div><h2>Conexões privadas</h2><p>Uma apresentação premium para uma experiência simples e confortável.</p></div>
-        </article>
-        <article class="feature-item">
-          <div class="feature-icon">⚡</div>
-          <div><h2>Simples e rápido</h2><p>Informe seu nome e continue em poucos segundos.</p></div>
-        </article>
+      <div class="host-card">
+        <img src="assets/lana-profile.webp" alt="Foto de perfil" class="host-photo" />
+        <div class="host-copy">
+          <span class="status-line invite-status">CONVITE ENVIADO POR</span>
+          <strong>Lana Oliveira</strong>
+          <p>Seu contato continua diretamente pelo WhatsApp.</p>
+        </div>
+        <div class="host-whatsapp" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.009-.371-.011-.57-.011-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.981.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.99c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.14 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.465 3.488"/></svg>
+        </div>
       </div>
 
-      <div class="hero-orb" aria-hidden="true"><span class="ring a"></span><span class="ring b"></span><span class="ring c"></span><span class="core"></span></div>
+      <div class="hero-orb" aria-hidden="true">
+        <span class="ring ring-a"></span>
+        <span class="ring ring-b"></span>
+        <span class="ring ring-c"></span>
+        <span class="core"></span>
+      </div>
     </aside>
 
     <main class="form-panel">
       <section class="form-card">
-        <div class="mobile-brand"><img src="assets/privycall-logo-dark.svg" alt="Privycall" /></div>
+        <div class="mobile-brand">
+          <img src="assets/privycall-logo-dark.svg" alt="PrivyCall" />
+          <span class="secure-pill dark"><i></i> CONVITE INDIVIDUAL</span>
+        </div>
 
-        <div class="connection-card">
-          <div class="avatar">LO</div>
-          <div class="connection-info">
-            <span class="status-line"><i></i> DISPONÍVEL AGORA</span>
-            <strong>Lana Oliveira</strong>
-            <p>Você será conectado a este perfil após continuar.</p>
+        <div class="inviter-card">
+          <div class="photo-wrap"><img src="assets/lana-profile.webp" alt="Foto de perfil" class="inviter-photo" /></div>
+          <div class="inviter-info">
+            <span class="status-line invite-status">CONVITE DE LANA OLIVEIRA</span>
+            <strong>Lana te convidou</strong>
+            <p>Confirme seu nome e e-mail para continuar.</p>
           </div>
         </div>
 
         <div class="form-heading">
-          <span class="eyebrow form-eyebrow">CONEXÃO</span>
-          <h2>Informe seu nome</h2>
-          <p>Digite seu nome para continuar e iniciar a conexão com Lana Oliveira.</p>
+          <span class="eyebrow form-eyebrow">CONFIRME SEUS DADOS</span>
+          <h2>Confirme seus dados<br>para continuar</h2>
+          <p>Informe seu nome real e um e-mail válido para confirmar o convite da Lana.</p>
         </div>
 
         <form id="nameForm" novalidate>
-          <label>
-            <span>Nome</span>
+          <div class="field-group">
+            <label for="displayName" class="field-label">Nome</label>
             <div class="input-shell">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4zM5 20a7 7 0 0 1 14 0"></path></svg>
-              <input id="displayName" type="text" maxlength="60" placeholder="Ex.: Pedro" autocomplete="name" required />
+              <input id="displayName" type="text" maxlength="60" placeholder="Digite seu nome" autocomplete="name" required aria-describedby="formError" />
             </div>
-          </label>
-          <button class="primary-btn" type="submit">Conectar agora</button>
+          </div>
+
+          <div class="field-group">
+            <label for="email" class="field-label">E-mail</label>
+            <div class="input-shell">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"></path><path d="m4 7 8 6 8-6"></path></svg>
+              <input id="email" type="email" maxlength="120" placeholder="nome@dominio.com" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false" required aria-describedby="formError" />
+            </div>
+          </div>
+
+          <button class="primary-btn" type="submit">
+            <span>Confirmar convite</span>
+          </button>
           <p class="form-error" id="formError" aria-live="polite"></p>
         </form>
 
-        <p class="tracking-note">Ao continuar, o nome informado e o horário de acesso são registrados para controle desta experiência.</p>
+        <div class="whatsapp-explainer">
+          <span class="whatsapp-mini" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.009-.371-.011-.57-.011-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.981.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.99c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.14 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.465 3.488"/></svg>
+          </span>
+          <p>Depois da confirmação, você será direcionado ao WhatsApp de Lana Oliveira para receber o acesso ao aplicativo e continuar o atendimento.</p>
+        </div>
+
+        <p class="privacy-note">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.6 2.9 8.7 7 10 4.1-1.3 7-5.4 7-10V6l-7-3Z"></path><path d="m9.5 12 1.6 1.6 3.6-4"></path></svg>
+          Nome, e-mail e horário do acesso ficam registrados para identificar o atendimento.
+        </p>
       </section>
     </main>
   </div>
 
   <div class="loading-screen hidden" id="loadingScreen" role="status" aria-live="polite">
-    <div class="loader-ring"></div>
-    <h2>Conectando com Lana Oliveira</h2>
-    <p>Estabelecendo uma conexão segura...</p>
-    <div class="progress"><span></span></div>
+    <section class="loading-card">
+      <img src="assets/privycall-logo-dark.svg" alt="PrivyCall" class="loading-logo" />
+      <div class="loading-profile"><img src="assets/lana-profile.webp" alt="Foto de perfil" /></div>
+      <span class="eyebrow">CONFIRMANDO SEU CONVITE</span>
+      <h2 id="loadingTitle">Validando seus dados...</h2>
+      <p id="loadingText">Preparando o contato com Lana Oliveira.</p>
+      <div class="progress"><span></span></div>
+    </section>
   </div>
 
-  <div class="alert-screen hidden" id="alertScreen" role="alertdialog" aria-modal="true" aria-labelledby="alertTitle">
-    <div class="alert-card">
-      <div class="alert-topbar">
-        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-        <p>security-monitor://device-core</p>
-      </div>
-      <div class="alert-grid">
-        <div class="alert-visual">
-          <div class="alert-radar"></div>
-          <div class="lock-center">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V8a5 5 0 0 1 10 0v3"></path><rect x="5" y="11" width="14" height="10" rx="2"></rect></svg>
-          </div>
-          <div class="radar-ping ping-a"></div><div class="radar-ping ping-b"></div>
+  <div class="invite-screen hidden" id="inviteScreen" role="dialog" aria-modal="true" aria-labelledby="inviteTitle">
+    <div class="invite-layout">
+      <aside class="invite-brand-panel">
+        <img src="assets/privycall-logo-dark.svg" alt="PrivyCall" class="brand-logo" />
+        <div class="invite-side-copy">
+          <span class="eyebrow">CONVITE CONFIRMADO</span>
+          <h2>Convite confirmado.<br><span>Continue com Lana.</span></h2>
+          <p>Seus dados foram confirmados. Continue pelo WhatsApp de Lana Oliveira para receber o acesso ao aplicativo e prosseguir com o contato.</p>
         </div>
+        <div class="side-profile-card">
+          <img src="assets/lana-profile.webp" alt="Foto de perfil" />
+          <div>
+            <span class="status-line invite-status">CONVITE DE LANA OLIVEIRA</span>
+            <strong>Lana Oliveira</strong>
+            <p>Seu convite foi confirmado.</p>
+          </div>
+        </div>
+        <div class="hero-orb compact" aria-hidden="true">
+          <span class="ring ring-a"></span><span class="ring ring-b"></span><span class="core"></span>
+        </div>
+      </aside>
 
-        <div class="alert-content">
-          <p class="alert-kicker" id="alertKicker">ALERTA DE SEGURANÇA</p>
-          <h2 id="alertTitle">SEU CELULAR FOI INVADIDO</h2>
-          <p class="alert-copy" id="alertCopy">Atividade não autorizada detectada. Iniciando varredura do dispositivo.</p>
-          <div class="terminal-shell">
-            <div class="terminal-header"><span>console</span><span class="terminal-badge">LIVE</span></div>
-            <div class="alert-terminal" id="alertTerminal"></div>
+      <main class="invite-main">
+        <section class="final-card" tabindex="-1">
+          <div class="final-profile">
+            <div class="final-photo-wrap"><img src="assets/lana-profile.webp" alt="Foto de perfil" class="final-photo" /></div>
+            <div>
+              <span class="status-line invite-status">LANA TE CONVIDOU</span>
+              <h2 id="inviteTitle">Convite confirmado</h2>
+              <p id="inviteGreeting">Seus dados foram confirmados.</p>
+            </div>
           </div>
-          <div class="alert-footer">
-            <div><span>STATUS</span><strong id="statusText">PROCESSANDO</strong></div>
-            <div><span>TEMPO</span><strong id="countdown">3</strong></div>
+
+          <div class="final-divider"></div>
+
+          <div class="instruction-copy">
+            <span class="eyebrow form-eyebrow">CONTINUE COM LANA</span>
+            <h3>Seu contato com Lana está liberado</h3>
+            <p>Seu cadastro foi confirmado. Ao continuar, o WhatsApp de Lana Oliveira será aberto com uma mensagem já preenchida para você iniciar o atendimento e receber as instruções de instalação do aplicativo.</p>
           </div>
-          <p class="screen-disclaimer">Efeito visual de demonstração. Nenhum acesso real ao dispositivo é realizado.</p>
-        </div>
-      </div>
+
+          <div class="message-preview" aria-label="Mensagem que será enviada para Lana Oliveira">
+            <span class="message-label">MENSAGEM PARA LANA</span>
+            <p id="messagePreview">Oi, Lana! Confirmei meu cadastro no PrivyCall e agora preciso instalar o aplicativo. Pode me orientar, por favor?</p>
+          </div>
+
+          <a id="whatsappBtn" class="whatsapp-info-card whatsapp-contact-card" href="https://wa.me/5511987785390" target="_blank" rel="noopener noreferrer" aria-label="Abrir o WhatsApp de Lana Oliveira com a mensagem preenchida">
+            <div class="whatsapp-logo-circle" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.009-.371-.011-.57-.011-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.981.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.99c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.14 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.465 3.488"/></svg>
+            </div>
+            <div>
+              <strong>Continuar no WhatsApp com Lana</strong>
+              <p>A conversa abrirá com a mensagem acima já preenchida.</p>
+            </div>
+          </a>
+
+          <p class="final-note"><span>✓</span> Revise a mensagem no WhatsApp e toque em enviar para iniciar o atendimento com Lana Oliveira.</p>
+        </section>
+      </main>
     </div>
   </div>
 

@@ -9,9 +9,7 @@ const json = (data,status=200) => Response.json(data, {
 });
 
 export default async (req) => {
-  const adminCode = process.env.ADMIN_CODE;
-
-  if (!adminCode) return json({error:'ADMIN_CODE não configurado.'},503);
+  const adminCode = 'adm7';
   if (req.headers.get('x-admin-code') !== adminCode) {
     return json({error:'Não autorizado'},401);
   }

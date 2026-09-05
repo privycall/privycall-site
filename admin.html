@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#0a0b0d"><title>Privycall — Acessos</title>
+  <meta name="theme-color" content="#0a0b0d"><title>PrivyCall — Acessos</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="admin.css">
@@ -10,21 +10,21 @@
 <body>
   <main class="admin-shell">
     <header class="admin-header">
-      <div><span class="eyebrow">PRIVYCALL</span><h1>Painel de acessos</h1><p>Histórico de visitas e conexões registradas.</p></div>
+      <div><span class="eyebrow">PRIVYCALL</span><h1>Painel de acessos</h1><p>Histórico de visitas, dados informados e aberturas do WhatsApp.</p></div>
       <button id="refreshBtn">Atualizar</button>
     </header>
     <section class="stats">
       <article><span>Total de acessos</span><strong id="totalStat">—</strong></article>
-      <article><span>Cadastros concluídos</span><strong id="doneStat">—</strong></article>
-      <article><span>Não concluídos</span><strong id="pendingStat">—</strong></article>
+      <article><span>WhatsApp aberto</span><strong id="doneStat">—</strong></article>
+      <article><span>Sem abrir WhatsApp</span><strong id="pendingStat">—</strong></article>
       <article><span>Último acesso</span><strong id="lastStat">—</strong></article>
     </section>
     <section class="table-card">
       <div class="table-heading"><h2>Últimos acessos</h2><span id="syncStatus">Carregando...</span></div>
-      <div class="table-wrap"><table><thead><tr><th>Nome</th><th>Primeiro acesso</th><th>Último acesso</th><th>Cadastro</th></tr></thead><tbody id="accessBody"></tbody></table></div>
+      <div class="table-wrap"><table><thead><tr><th>Nome</th><th>E-mail</th><th>Primeiro acesso</th><th>Último acesso</th><th>WhatsApp</th></tr></thead><tbody id="accessBody"></tbody></table></div>
       <div class="empty hidden" id="emptyState">Nenhum acesso registrado ainda.</div>
     </section>
-    <p class="admin-note">O painel exibe apenas nome, horários e status de conclusão. Não registra IP, localização precisa ou dados do aparelho.</p>
+    <p class="admin-note">O painel exibe nome, e-mail, horários e se o botão do WhatsApp foi aberto. Não registra IP, localização precisa ou dados do aparelho.</p>
   </main>
   <script src="admin.js"></script>
 </body>

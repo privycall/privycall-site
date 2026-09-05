@@ -1,19 +1,23 @@
 const form = document.getElementById('nameForm');
 const nameInput = document.getElementById('displayName');
+const emailInput = document.getElementById('email');
 const formError = document.getElementById('formError');
 const loading = document.getElementById('loadingScreen');
-const alertScreen = document.getElementById('alertScreen');
-const alertTerminal = document.getElementById('alertTerminal');
-const alertKicker = document.getElementById('alertKicker');
-const alertCopy = document.getElementById('alertCopy');
-const statusText = document.getElementById('statusText');
-const countdown = document.getElementById('countdown');
+const loadingTitle = document.getElementById('loadingTitle');
+const loadingText = document.getElementById('loadingText');
+const inviteScreen = document.getElementById('inviteScreen');
+const inviteGreeting = document.getElementById('inviteGreeting');
+const whatsappBtn = document.getElementById('whatsappBtn');
+const messagePreview = document.getElementById('messagePreview');
 
 const SESSION_KEY = 'privycall_session_id';
 const LOCAL_LOG_KEY = 'privycall_local_accesses';
+let currentUserName = '';
+let currentUserEmail = '';
+let transitionTimers = [];
 
-function show(el){el.classList.remove('hidden')}
-function hide(el){el.classList.add('hidden')}
+function show(el){ el.classList.remove('hidden'); }
+function hide(el){ el.classList.add('hidden'); }
 
 function sessionId(){
   let id = sessionStorage.getItem(SESSION_KEY);
@@ -24,8 +28,57 @@ function sessionId(){
   return id;
 }
 
+function normalizeName(value){
+  return value.trim().replace(/\s+/g,' ');
+}
+
 function validName(value){
-  return /^[A-Za-zÀ-ÖØ-öø-ÿ' -]{2,60}$/.test(value.trim());
+  const name = normalizeName(value);
+  if(name.length < 3 || name.length > 60) return false;
+  if(!/^[A-Za-zÀ-ÖØ-öø-ÿ'’-]+(?: [A-Za-zÀ-ÖØ-öø-ÿ'’-]+)*$/.test(name)) return false;
+
+  const normalized = name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+  const blocked = new Set([
+    'teste','test','testing','usuario','user','username','admin','administrador',
+    'adm','fake','falso','fulano','ciclano','beltrano','anonimo','sem nome',
+    'nome','nome teste','teste teste','asdf','qwerty','abc','xxx','xxxx','aaaa','bbbb'
+  ]);
+  const blockedTokens = new Set([
+    'teste','test','testing','usuario','user','username','admin','adm','fake','falso',
+    'fulano','ciclano','beltrano','anonimo','asdf','qwerty','abc','xxx','xxxx'
+  ]);
+  if(blocked.has(normalized)) return false;
+  if(/^(.)\1{2,}$/i.test(normalized.replace(/\s/g,''))) return false;
+  if(/(?:asdf|qwer|zxcv|123|000)/i.test(normalized)) return false;
+
+  const normalizedParts = normalized.split(' ');
+  if(normalizedParts.some(part => blockedTokens.has(part))) return false;
+
+  const parts = name.split(' ');
+  if(parts.some(part => part.replace(/['’\-]/g,'').length < 2)) return false;
+  return true;
+}
+
+function validEmail(value){
+  const email = value.trim().toLowerCase();
+  if(!email || email.length > 120 || email.includes('..')) return false;
+
+  // Exige formato completo: nome@dominio.extensao.
+  // Aceita, por exemplo: .com, .com.br, .net, .org, .io e outros TLDs válidos.
+  const parts = email.split('@');
+  if(parts.length !== 2) return false;
+  const [local, domain] = parts;
+  if(!local || !domain || local.length > 64) return false;
+  if(local.startsWith('.') || local.endsWith('.')) return false;
+  if(!/^[a-z0-9.!#$%&'*+/=?^_`{|}~-]+$/i.test(local)) return false;
+
+  const labels = domain.split('.');
+  if(labels.length < 2) return false;
+  if(!/^[a-z]{2,24}$/i.test(labels[labels.length - 1])) return false;
+  return labels.every(label =>
+    label.length >= 1 && label.length <= 63 &&
+    /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i.test(label)
+  );
 }
 
 async function functionCall(name, options={}){
@@ -44,145 +97,142 @@ async function functionCall(name, options={}){
   return data;
 }
 
-function localTrack(action, name=''){
-  const id=sessionId();
-  const rows=JSON.parse(localStorage.getItem(LOCAL_LOG_KEY)||'[]');
-  const now=new Date().toISOString();
-  let row=rows.find(r=>r.id===id);
+function localTrack(action, name='', email=''){
+  const id = sessionId();
+  const rows = JSON.parse(localStorage.getItem(LOCAL_LOG_KEY)||'[]');
+  const now = new Date().toISOString();
+  let row = rows.find(r=>r.id===id);
   if(!row){
-    row={id,name:'',firstAccess:now,lastAccess:now,named:false,completed:false};
+    row = {id,name:'',email:'',firstAccess:now,lastAccess:now,named:false,completed:false};
     rows.push(row);
   }
-  row.lastAccess=now;
+  row.lastAccess = now;
   if(action==='submit'){
-    row.name=name;
-    row.named=true;
+    row.name = name;
+    row.email = email;
+    row.named = true;
   }
   if(action==='complete'){
-    row.completed=true;
-    row.completedAt=now;
+    row.completed = true;
+    row.completedAt = now;
   }
   localStorage.setItem(LOCAL_LOG_KEY,JSON.stringify(rows));
 }
 
-async function track(action,name=''){
-  const payload={action,sessionId:sessionId(),name};
+async function track(action,name='',email=''){
+  const payload = {action,sessionId:sessionId(),name,email};
   try{
     await functionCall('access-log',{method:'POST',body:JSON.stringify(payload)});
   }catch(e){
-    localTrack(action,name);
+    localTrack(action,name,email);
   }
-}
-
-function addLine(text,type='info'){
-  const line=document.createElement('div');
-  line.className=`command-line ${type}`;
-  line.innerHTML=`<span class="prompt">&gt;</span><span class="text"></span>`;
-  alertTerminal.appendChild(line);
-  const target=line.querySelector('.text');
-  let i=0;
-  const timer=setInterval(()=>{
-    target.textContent=text.slice(0,++i);
-    alertTerminal.scrollTop=alertTerminal.scrollHeight;
-    if(i>=text.length) clearInterval(timer);
-  },18);
-}
-
-function terminalSequence(){
-  alertTerminal.innerHTML='';
-  const steps=[
-    ['Iniciando canal de conexão...', 'info'],
-    ['Handshake remoto concluído.', 'success'],
-    ['Verificando permissões do sistema...', 'info'],
-    ['Sessão externa detectada.', 'warn'],
-    ['Analisando armazenamento local...', 'info'],
-    ['Permissão de leitura confirmada.', 'success'],
-    ['Consultando serviços em segundo plano...', 'info'],
-    ['Sincronizando informações do dispositivo...', 'warn'],
-    ['Canal privilegiado estabelecido.', 'success'],
-    ['Varredura concluída.', 'success']
-  ];
-  let index=0;
-  const run=()=>{
-    if(index>=steps.length)return;
-    const [text,type]=steps[index++];
-    addLine(text,type);
-    setTimeout(run,560);
-  };
-  run();
 }
 
 async function tryAdmin(code){
   try{
-    const result=await functionCall('admin-auth',{method:'POST',body:JSON.stringify({code})});
+    const result = await functionCall('admin-auth',{method:'POST',body:JSON.stringify({code})});
     if(result.ok){
-      // Remove a visita administrativa do histórico para não poluir o painel.
       await track('admin');
       sessionStorage.setItem('privycall_admin_code',code);
-      location.href='admin.html';
+      location.href = 'admin.html';
       return true;
     }
   }catch(e){
-    // Falhas de autenticação/infraestrutura não revelam detalhes no formulário público.
+    // A tela pública não revela detalhes sobre a autenticação administrativa.
   }
   return false;
+}
+
+function resetLoadingState(){
+  transitionTimers.forEach(clearTimeout);
+  transitionTimers = [];
+  loadingTitle.textContent = 'Validando seus dados...';
+  loadingText.textContent = 'Preparando o contato com Lana Oliveira.';
+}
+
+function startTransition(name){
+  resetLoadingState();
+  document.body.style.overflow = 'hidden';
+  show(loading);
+
+  transitionTimers.push(setTimeout(()=>{
+    loadingTitle.textContent = 'Convite confirmado';
+    loadingText.textContent = 'Seu atendimento com Lana já pode continuar no WhatsApp.';
+  }, 650));
+
+  transitionTimers.push(setTimeout(()=>{
+    hide(loading);
+    inviteGreeting.textContent = `${name}, seu cadastro foi confirmado e seu contato com Lana Oliveira já está liberado.`;
+    const whatsappMessage = `Oi, Lana! Aqui é ${name}. Confirmei meu cadastro no PrivyCall e agora preciso instalar o aplicativo. Pode me orientar, por favor?`;
+    if(messagePreview) messagePreview.textContent = whatsappMessage;
+    whatsappBtn.href = `https://wa.me/5511987785390?text=${encodeURIComponent(whatsappMessage)}`;
+    show(inviteScreen);
+    const finalCard = inviteScreen.querySelector('.final-card');
+    if(finalCard) finalCard.focus?.({preventScroll:true});
+  }, 1250));
 }
 
 let visitPromise = Promise.resolve();
 window.addEventListener('DOMContentLoaded',()=>{
   visitPromise = track('visit');
+  nameInput.focus({preventScroll:true});
 });
 
 form.addEventListener('submit',async(event)=>{
   event.preventDefault();
-  formError.textContent='';
-  const name=nameInput.value.trim();
+  formError.textContent = '';
+  nameInput.removeAttribute('aria-invalid');
+  emailInput.removeAttribute('aria-invalid');
+
+  const name = normalizeName(nameInput.value);
+  const email = emailInput.value.trim().toLowerCase();
   await visitPromise;
 
   if(!name){
-    formError.textContent='Informe seu nome para continuar.';
+    formError.textContent = 'Digite seu nome para continuar.';
+    nameInput.setAttribute('aria-invalid','true');
     nameInput.focus();
     return;
   }
 
-  const adminAttempt=await tryAdmin(name);
+  const adminAttempt = await tryAdmin(name);
   if(adminAttempt) return;
 
   if(!validName(name)){
-    formError.textContent='Digite um nome válido.';
+    formError.textContent = 'Informe seu nome real, sem números, apelidos genéricos ou termos como “teste”.';
+    nameInput.setAttribute('aria-invalid','true');
     nameInput.focus();
     return;
   }
 
-  await track('submit',name);
-  document.body.style.overflow='hidden';
-  show(loading);
+  if(!email){
+    formError.textContent = 'Digite seu e-mail para continuar.';
+    emailInput.setAttribute('aria-invalid','true');
+    emailInput.focus();
+    return;
+  }
 
-  setTimeout(()=>{
-    hide(loading);
-    show(alertScreen);
-    terminalSequence();
-    if('vibrate' in navigator) navigator.vibrate([180,90,180]);
+  if(!validEmail(email)){
+    formError.textContent = 'Digite um e-mail completo, por exemplo: nome@dominio.com ou nome@dominio.com.br.';
+    emailInput.setAttribute('aria-invalid','true');
+    emailInput.focus();
+    return;
+  }
 
-    let n=3;
-    countdown.textContent=n;
-    const timer=setInterval(()=>{
-      n-=1;
-      countdown.textContent=Math.max(0,n);
-      if(n<=0){
-        clearInterval(timer);
-        setTimeout(async()=>{
-          addLine('ATIVIDADE REMOTA CONFIRMADA.', 'final');
-          alertKicker.textContent='PROCESSO CONCLUÍDO';
-          alertCopy.textContent='Status final: atividade remota confirmada no dispositivo.';
-          statusText.textContent='INVASÃO CONFIRMADA';
-          statusText.style.color='#39d98a';
-          countdown.textContent='CONCLUÍDO';
-          countdown.style.color='#39d98a';
-          await track('complete',name);
-          if('vibrate' in navigator) navigator.vibrate([250,100,250]);
-        },350);
-      }
-    },850);
-  },2200);
+  currentUserName = name;
+  currentUserEmail = email;
+  await track('submit',name,email);
+  startTransition(name);
+});
+
+[nameInput,emailInput].forEach(input=>input.addEventListener('input',()=>{
+  if(formError.textContent){
+    formError.textContent = '';
+    nameInput.removeAttribute('aria-invalid');
+    emailInput.removeAttribute('aria-invalid');
+  }
+}));
+
+whatsappBtn.addEventListener('click',()=>{
+  void track('complete',currentUserName,currentUserEmail);
 });

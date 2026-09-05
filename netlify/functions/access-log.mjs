@@ -12,7 +12,7 @@ export default async (req) => {
   if (req.method !== 'POST') return json({error:'Método não permitido'},405);
 
   try {
-    const { action, sessionId, name='' } = await req.json();
+    const { action, sessionId, name='', email='' } = await req.json();
 
     if (!sessionId || typeof sessionId !== 'string' || sessionId.length > 120) {
       return json({error:'Sessão inválida'},400);
@@ -23,8 +23,10 @@ export default async (req) => {
     if (name && (typeof name !== 'string' || name.length > 60)) {
       return json({error:'Nome inválido'},400);
     }
+    if (email && (typeof email !== 'string' || email.length > 120)) {
+      return json({error:'E-mail inválido'},400);
+    }
 
-    // Store compartilhado entre deploys e com leitura fortemente consistente.
     const store = getStore({ name: 'privycall-access', consistency: 'strong' });
     const safeId = sessionId.replace(/[^a-zA-Z0-9._-]/g,'');
     const key = `session/${safeId}`;
@@ -35,13 +37,12 @@ export default async (req) => {
     }
 
     const now = new Date().toISOString();
-
-    // type:'json' já devolve o objeto salvo diretamente.
     const previous = await store.get(key, { type:'json', consistency:'strong' });
 
     const record = {
       id: sessionId,
       name: action === 'submit' ? name.trim() : (previous?.name || ''),
+      email: action === 'submit' ? email.trim().toLowerCase() : (previous?.email || ''),
       firstAccess: previous?.firstAccess || now,
       lastAccess: now,
       named: action === 'submit' ? true : Boolean(previous?.named ?? previous?.registered),
