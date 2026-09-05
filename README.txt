@@ -14,3 +14,6 @@ Painel administrativo:
 
 Número de WhatsApp configurado:
 - +55 11 98778-5390
+
+
+Atualização visual: correção do layout mobile, remoção de cartões duplicados da Lana nas telas públicas e botão principal do WhatsApp em rosa com ícone verde.

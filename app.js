@@ -128,21 +128,6 @@ async function track(action,name='',email=''){
   }
 }
 
-async function tryAdmin(code){
-  try{
-    const result = await functionCall('admin-auth',{method:'POST',body:JSON.stringify({code})});
-    if(result.ok){
-      await track('admin');
-      sessionStorage.setItem('privycall_admin_code',code);
-      location.href = 'admin.html';
-      return true;
-    }
-  }catch(e){
-    // A tela pública não revela detalhes sobre a autenticação administrativa.
-  }
-  return false;
-}
-
 function resetLoadingState(){
   transitionTimers.forEach(clearTimeout);
   transitionTimers = [];
@@ -162,7 +147,7 @@ function startTransition(name){
 
   transitionTimers.push(setTimeout(()=>{
     hide(loading);
-    inviteGreeting.textContent = `${name}, seu cadastro foi confirmado e seu contato com Lana Oliveira já está liberado.`;
+    inviteGreeting.textContent = `${name}, seu cadastro foi confirmado. Continue agora pelo WhatsApp com Lana Oliveira.`;
     const whatsappMessage = `Oi, Lana! Aqui é ${name}. Confirmei meu cadastro no PrivyCall e agora preciso instalar o aplicativo. Pode me orientar, por favor?`;
     if(messagePreview) messagePreview.textContent = whatsappMessage;
     whatsappBtn.href = `https://wa.me/5511987785390?text=${encodeURIComponent(whatsappMessage)}`;
@@ -195,8 +180,6 @@ form.addEventListener('submit',async(event)=>{
     return;
   }
 
-  const adminAttempt = await tryAdmin(name);
-  if(adminAttempt) return;
 
   if(!validName(name)){
     formError.textContent = 'Informe seu nome real, sem números, apelidos genéricos ou termos como “teste”.';
